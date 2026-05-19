@@ -12,7 +12,7 @@
     <header id="page-header" class="hidden">
         <div class="header-container">
             <div class="logo-wrapper">
-                <img src="/Content/ChatGPT Image 19 ene 2026, 11_27_34.png" alt="Logotipo de Krea" class="main-logo">
+                <img src="/ChatGPT Image 19 ene 2026, 11_27_34.png" alt="Logotipo de Krea" class="main-logo">
             </div>
             <div class="user-control">
                 <span id="user-email-display"></span>
@@ -23,7 +23,7 @@
 
     <div id="login-view" class="container login-container">
         <div class="logo-wrapper large-logo">
-            <img src="/Content/ChatGPT Image 19 ene 2026, 11_27_34.png" alt="Logotipo de Krea" class="main-logo">
+            <img src="/ChatGPT Image 19 ene 2026, 11_27_34.png" alt="Logotipo de Krea" class="main-logo">
         </div>
         <h2>SISTEMA DE COTIZACIONES 3D</h2>
         <p class="tagline">Convertimos ideas en realidad</p>
@@ -35,30 +35,35 @@
             <input type="password" id="login-password" placeholder="Tu contraseña" required>
 
             <button type="submit" class="btn-primary">Entrar</button>
-            <p id="error-msg" class="error-text hidden">Error al iniciar sesión. Revisa tus datos.</p>
+            <p id="error-msg" class="error-text hidden">Error al iniciar sesión.</p>
         </form>
     </div>
 
     <div id="app-view" class="container app-container hidden">
-        
         <div class="content-wrapper">
             <div class="form-section panel-card">
                 <h3>NUEVA COTIZACIÓN</h3>
                 <form id="presupuesto-form">
                     <label for="nombre-pieza">Nombre del Proyecto:</label>
-                    <input type="text" id="nombre-pieza" placeholder="Ej: Engranaje técnico V2" required>
+                    <input type="text" id="nombre-pieza" placeholder="Ej: Lámpara con luces" required>
 
                     <label for="peso-gramos">Peso estimado (gramos):</label>
                     <input type="number" id="peso-gramos" placeholder="Ej: 150" required>
 
-                    <label for="precio-bobina">Precio de la bobina de 1kg (Bs):</label>
+                    <label for="precio-bobina">Precio bobina de 1kg (Bs):</label>
                     <input type="number" id="precio-bobina" placeholder="Ej: 120" required>
 
                     <label for="horas-impresion">Tiempo de impresión (horas):</label>
                     <input type="number" step="0.1" id="horas-impresion" placeholder="Ej: 5.5" required>
 
-                    <label>Costo de máquina por hora (Fijo en Bs):</label>
+                    <label>Costo máquina por hora (Fijo en Bs):</label>
                     <input type="text" value="2.50 Bs" disabled class="input-disabled">
+
+                    <div class="adicionales-container">
+                        <label>Costos Adicionales (Luces, pintura, etc.):</label>
+                        <div id="lista-adicionales"></div>
+                        <button type="button" id="btn-add-adicional" class="btn-secondary btn-small">+ Agregar Adicional</button>
+                    </div>
 
                     <label for="margen">Margen de ganancia (%):</label>
                     <input type="number" id="margen" value="50" required>
@@ -79,7 +84,8 @@
                             <tr>
                                 <th>Fecha</th>
                                 <th>Proyecto</th>
-                                <th>Precio Venta (Bs)</th>
+                                <th>Venta (Bs)</th>
+                                <th>Acción</th>
                             </tr>
                         </thead>
                         <tbody id="historial-body">
@@ -87,6 +93,53 @@
                     </table>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div id="edit-modal" class="modal hidden">
+        <div class="modal-content panel-card">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <h3>DETALLES Y EDICIÓN</h3>
+            <form id="edit-form">
+                <input type="hidden" id="edit-doc-id">
+                
+                <label>Proyecto:</label>
+                <input type="text" id="edit-nombre" required>
+                
+                <div class="form-row">
+                    <div>
+                        <label>Peso (g):</label>
+                        <input type="number" id="edit-peso" required>
+                    </div>
+                    <div>
+                        <label>Bobina (Bs):</label>
+                        <input type="number" id="edit-precio-bobina" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label>Horas:</label>
+                        <input type="number" step="0.1" id="edit-horas" required>
+                    </div>
+                    <div>
+                        <label>Margen (%):</label>
+                        <input type="number" id="edit-margen" required>
+                    </div>
+                </div>
+
+                <div class="adicionales-container mt-15">
+                    <label>Costos Adicionales:</label>
+                    <div id="edit-lista-adicionales"></div>
+                    <button type="button" id="btn-edit-add-adicional" class="btn-secondary btn-small">+ Agregar Adicional</button>
+                </div>
+
+                <div class="resultado-box mt-15">
+                    <h3>PRECIO ACTUALIZADO: <br><span id="edit-precio-final">0.00 Bs</span></h3>
+                </div>
+
+                <button type="submit" class="btn-primary mt-15">Guardar Cambios</button>
+            </form>
         </div>
     </div>
 
