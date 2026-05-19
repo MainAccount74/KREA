@@ -1,23 +1,32 @@
-/* --- VARIABLES DE DISEÑO --- */
+/* ==========================================================================
+   KREA - SISTEMA DE PRESUPUESTOS 3D
+   Hoja de Estilos Principal
+   ========================================================================== */
+
+/* --- 1. VARIABLES DE DISEÑO (Colores y Fuentes) --- */
 :root {
-    /* Paleta de colores */
-    --color-bg-body: #fcfcfc;
-    --color-bg-card: #ffffff;
-    --color-text-main: #1a1a1a;
-    --color-text-sec: #666666;
-    --color-accent-dark: #333333;
-    --color-accent-sec: #b0bec5;
-    --color-success: #00897b;
-    --color-border: #e0e0e0;
-    --color-error: #d32f2f;
+    /* Paleta de colores técnica y minimalista */
+    --color-bg-body: #fcfcfc;       /* Fondo general de la página */
+    --color-bg-card: #ffffff;       /* Fondo de los paneles y tarjetas */
+    --color-text-main: #1a1a1a;     /* Texto principal (casi negro) */
+    --color-text-sec: #666666;      /* Texto secundario (gris) */
+    --color-accent-dark: #333333;   /* Gris oscuro para botones y cabeceras */
+    --color-accent-sec: #e0e0e0;    /* Gris claro para bordes y fondos secundarios */
+    --color-success: #00897b;       /* Verde para el precio final (éxito) */
+    --color-border: #d1d5db;        /* Color de los bordes de los inputs */
+    --color-error: #d32f2f;         /* Rojo para errores o eliminar */
 
     /* Tipografía */
     --font-heading: 'Montserrat', sans-serif;
     --font-body: 'Open Sans', sans-serif;
 }
 
-/* --- RESETEO BÁSICO --- */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* --- 2. RESETEO BÁSICO --- */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
 
 body {
     font-family: var(--font-body);
@@ -30,11 +39,11 @@ body {
     padding: 20px;
 }
 
-/* --- CONTENEDORES --- */
+/* --- 3. CONTENEDORES PRINCIPALES --- */
 .container {
     background-color: var(--color-bg-card);
     width: 100%;
-    max-width: 400px;
+    max-width: 400px; /* Tamaño por defecto (Login) */
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -43,7 +52,44 @@ body {
     align-items: center;
 }
 
-/* --- CABECERA DE LA PÁGINA --- */
+.app-container {
+    max-width: 950px; /* Tamaño expandido para la calculadora + historial */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    margin-top: 80px; /* Deja espacio para la cabecera fija */
+    padding: 30px;
+    align-items: stretch; /* Permite que el contenido ocupe el ancho */
+}
+
+/* Estructura de columnas para la vista principal */
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 columna en celulares */
+    gap: 30px;
+}
+
+@media (min-width: 768px) {
+    .content-wrapper {
+        grid-template-columns: 1fr 1fr; /* 2 columnas en computadoras */
+    }
+}
+
+.panel-card {
+    background-color: var(--color-bg-card);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+}
+
+.panel-card h3 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--color-accent-dark);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* --- 4. CABECERA DE LA PÁGINA (HEADER) --- */
 #page-header {
     background-color: var(--color-accent-dark);
     color: var(--color-bg-body);
@@ -66,6 +112,7 @@ body {
 .header-container .logo-wrapper .main-logo {
     height: 30px;
     width: auto;
+    filter: brightness(0) invert(1); /* Vuelve el logo blanco para contrastar con el fondo oscuro */
 }
 
 .user-control {
@@ -76,16 +123,16 @@ body {
 }
 
 #user-email-display {
-    color: var(--color-accent-sec);
+    color: #a0a0a0;
 }
 
-/* --- INICIO DE SESIÓN --- */
+/* --- 5. INICIO DE SESIÓN --- */
 .login-container {
     padding: 50px 30px;
 }
 
 .login-container .logo-wrapper.large-logo {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .login-container .logo-wrapper.large-logo .main-logo {
@@ -109,49 +156,36 @@ body {
     text-align: center;
 }
 
-/* --- PANEL DE CONTROL (Unificado) --- */
-.app-container {
-    max-width: 950px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    margin-top: 80px; /* Espacio para la cabecera fija */
-    padding: 30px;
+/* --- 6. FORMULARIOS E INPUTS --- */
+form { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+    width: 100%;
 }
 
-.content-wrapper {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
+label { 
+    font-size: 0.85rem; 
+    font-weight: 600; 
+    color: var(--color-text-sec); 
+    margin-bottom: -5px;
 }
 
-@media (min-width: 768px) {
-    .content-wrapper {
-        grid-template-columns: 1fr 1fr;
-    }
+input { 
+    padding: 12px; 
+    border: 1px solid var(--color-border); 
+    border-radius: 4px; 
+    font-size: 0.95rem; 
+    font-family: var(--font-body); 
+    transition: all 0.3s ease;
 }
 
-.panel-card {
-    background-color: var(--color-bg-card);
-    padding: 25px;
-    border-radius: 8px;
-    border: 1px solid var(--color-border);
+input:focus { 
+    outline: none; 
+    border-color: var(--color-accent-dark); 
+    box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.1);
 }
 
-.panel-card h3 {
-    font-family: var(--font-heading);
-    font-weight: 800;
-    font-size: 1rem;
-    color: var(--color-accent-dark);
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* --- FORMULARIOS --- */
-form { display: flex; flex-direction: column; gap: 15px; width: 100%;}
-label { font-size: 0.85rem; font-weight: 600; color: var(--color-text-sec); margin-bottom: -5px;}
-input { padding: 12px; border: 1px solid var(--color-border); border-radius: 4px; font-size: 0.95rem; font-family: var(--font-body); }
-input:focus { outline: none; border-color: var(--color-accent-dark); }
-
-/* Estilo para el input bloqueado */
 .input-disabled {
     background-color: #f5f5f5;
     color: var(--color-text-sec);
@@ -159,35 +193,216 @@ input:focus { outline: none; border-color: var(--color-accent-dark); }
     font-weight: 600;
 }
 
-/* --- BOTONES --- */
+/* --- 7. BOTONES --- */
 .btn-primary {
-    padding: 14px; background-color: var(--color-accent-dark); color: var(--color-bg-body); border: none;
-    border-radius: 4px; font-weight: 800; cursor: pointer; transition: 0.3s ease; text-transform: uppercase; font-size: 0.9rem;
+    padding: 14px; 
+    background-color: var(--color-accent-dark); 
+    color: var(--color-bg-body); 
+    border: none;
+    border-radius: 4px; 
+    font-weight: 800; 
+    cursor: pointer; 
+    transition: 0.3s ease; 
+    text-transform: uppercase; 
+    font-size: 0.9rem;
     width: 100%;
 }
-.btn-primary:hover { background-color: var(--color-text-main); }
+.btn-primary:hover { background-color: #000000; }
 
-.btn-secondary { background-color: var(--color-accent-sec); color: var(--color-accent-dark); padding: 8px 12px; font-size: 0.8rem; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; }
-.btn-secondary:hover { background-color: #90a4ae; }
+.btn-secondary { 
+    background-color: #eeeeee; 
+    color: var(--color-accent-dark); 
+    padding: 8px 12px; 
+    font-size: 0.8rem; 
+    border: none; 
+    border-radius: 4px; 
+    font-weight: 600; 
+    cursor: pointer; 
+    transition: 0.2s ease;
+}
+.btn-secondary:hover { background-color: #dddddd; }
 
-/* --- RESULTADO --- */
-.resultado-box { margin-top: 30px; padding: 25px; background-color: #e8f5e9; border: 2px solid var(--color-success); border-radius: 8px; text-align: center; width: 100%;}
-.resultado-box h3 { color: var(--color-accent-dark); font-size: 0.9rem; font-weight: 600;}
-#precio-final { font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: var(--color-success); display: block; margin-top: 10px; }
+.btn-small { 
+    padding: 6px 10px; 
+    font-size: 0.8rem; 
+    width: auto; 
+    align-self: flex-start;
+}
 
-/* --- TABLA DE HISTORIAL --- */
+.btn-ver-editar {
+    background-color: var(--color-accent-sec);
+    color: var(--color-accent-dark);
+    border: none; 
+    padding: 6px 10px; 
+    border-radius: 4px; 
+    font-size: 0.75rem; 
+    font-weight: 600; 
+    cursor: pointer;
+    transition: 0.2s;
+}
+.btn-ver-editar:hover { 
+    background-color: var(--color-success); 
+    color: white;
+}
+
+/* --- 8. COMPONENTES DINÁMICOS (Costos Adicionales) --- */
+.adicionales-container {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px dashed #b0bec5;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.adicional-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.adicional-row input { padding: 8px; }
+.adicional-row .desc-input { flex: 2; }
+.adicional-row .precio-input { flex: 1; min-width: 80px; }
+
+.btn-remove-adicional {
+    background-color: #ffebee;
+    color: var(--color-error);
+    border: none;
+    border-radius: 4px;
+    width: 35px;
+    height: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+}
+.btn-remove-adicional:hover { background-color: #ffcdd2; }
+
+/* Organización de inputs en filas (para el Modal) */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+.form-row > div { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px;
+}
+
+/* --- 9. CAJA DE RESULTADOS --- */
+.resultado-box { 
+    margin-top: 30px; 
+    padding: 25px; 
+    background-color: #e8f5e9; 
+    border: 2px solid var(--color-success); 
+    border-radius: 8px; 
+    text-align: center; 
+    width: 100%;
+}
+.resultado-box h3 { 
+    color: var(--color-accent-dark); 
+    font-size: 0.9rem; 
+    font-weight: 600;
+}
+#precio-final, #edit-precio-final { 
+    font-family: var(--font-heading); 
+    font-size: 2.2rem; 
+    font-weight: 800; 
+    color: var(--color-success); 
+    display: block; 
+    margin-top: 10px; 
+}
+
+/* --- 10. TABLA DE HISTORIAL --- */
 .historial-section {
-    background-color: var(--color-bg-card);
+    background-color: transparent;
     border: none;
     padding: 0;
 }
 
-.table-responsive { overflow-y: auto; max-height: 400px; border: 1px solid var(--color-border); border-radius: 8px; margin-top: 10px;}
-table { width: 100%; border-collapse: collapse; }
-th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--color-border); font-size: 0.85rem; }
-th { background-color: var(--color-bg-card); color: var(--color-text-sec); font-weight: 600; position: sticky; top: 0; z-index: 1;}
-tr:hover { background-color: #f9f9f9; }
+.table-responsive { 
+    overflow-y: auto; 
+    max-height: 550px; 
+    border: 1px solid var(--color-border); 
+    border-radius: 8px; 
+    margin-top: 10px;
+    background-color: var(--color-bg-card);
+}
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+}
+th, td { 
+    padding: 12px; 
+    text-align: left; 
+    border-bottom: 1px solid var(--color-border); 
+    font-size: 0.85rem; 
+}
+th { 
+    background-color: #f1f5f9; 
+    color: var(--color-accent-dark); 
+    font-weight: 700; 
+    position: sticky; 
+    top: 0; 
+    z-index: 1;
+}
+tr:hover { background-color: #f8fafc; }
 
-/* --- UTILIDADES --- */
+/* --- 11. VENTANA MODAL (POPUP) --- */
+.modal {
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background-color: var(--color-bg-card);
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh; /* Para que no se salga de la pantalla en monitores pequeños */
+    overflow-y: auto; /* Scroll interno si es muy largo */
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    line-height: 1;
+    font-weight: bold;
+    color: var(--color-text-sec);
+    cursor: pointer;
+    transition: 0.2s;
+}
+.close-modal:hover { color: var(--color-error); }
+
+/* --- 12. CLASES DE UTILIDAD --- */
 .hidden { display: none !important; }
-.error-text { color: var(--color-error); font-size: 0.8rem; text-align: center; margin-top: 15px; width: 100%;}
+.error-text { 
+    color: var(--color-error); 
+    font-size: 0.85rem; 
+    text-align: center; 
+    margin-top: 15px; 
+    width: 100%;
+    font-weight: 600;
+}
+.mt-15 { margin-top: 15px; }
